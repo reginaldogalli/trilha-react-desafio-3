@@ -1,5 +1,5 @@
 import { useNavigate  } from "react-router-dom";
-import { MdEmail, MdLock } from 'react-icons/md'
+import { MdEmail, MdLock, MdContacts } from 'react-icons/md'
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
@@ -10,10 +10,7 @@ import { useForm } from "react-hook-form";
 
 import { Container, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
 
-const Login = () => {
-    const handleCreateAccount = () => {
-        navigate('/cadastro')
-    }
+const Cadastro = () => {
 
     const navigate = useNavigate()
 
@@ -48,18 +45,23 @@ const Login = () => {
             </Column>
             <Column>
                 <Wrapper>
-                <TitleLogin>Faça seu cadastro</TitleLogin>
-                <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+                <TitleLogin>Comece agora grátis</TitleLogin>
+                <SubtitleLogin>Crie sua conta e make the change._</SubtitleLogin>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input placeholder="Nome completo" leftIcon={<MdContacts />} name="name"  control={control} />
+                    {errors.email && <span>E-mail é obrigatório</span>}
                     <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email"  control={control} />
                     {errors.email && <span>E-mail é obrigatório</span>}
                     <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
                     {errors.senha && <span>Senha é obrigatório</span>}
-                    <Button title="Entrar" variant="secondary" type="submit"/>
+                    <Button title="Criar minha conta" variant="secondary" type="submit"/>
                 </form>
                 <Row>
-                    <EsqueciText>Esqueci minha senha</EsqueciText>
-                    <CriarText onClick={handleCreateAccount}>Criar Conta</CriarText>
+                    <SubtitleLogin>Ao clicar em "criar minha conta grátis" declaro que aceito as Políticas de Privacidade e os Termos de Uso da DIO.</SubtitleLogin>
+                </Row>
+                <Row>
+                    <SubtitleLogin>Já tenho conta. </SubtitleLogin>
+                    <CriarText>Fazer login</CriarText>
                 </Row>
                 </Wrapper>
             </Column>
@@ -67,4 +69,4 @@ const Login = () => {
     </>)
 }
 
-export { Login }
+export { Cadastro }
